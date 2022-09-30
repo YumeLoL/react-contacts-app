@@ -7,12 +7,14 @@ module.exports = {
     colors: {
       transparent: "transparent",
       current: "currentColor",
-      primary: "#009999",
+      primary: "#B4CD93",
       secondary: "#dea23b",
       black: colors.black,
       white: colors.white,
       gray: colors.gray,
       red: colors.red,
+      emerald: colors.emerald,
+      stone: colors.stone,
     },
 
     screens: {
