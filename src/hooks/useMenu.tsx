@@ -1,6 +1,6 @@
 import overview from '../images/overview-icon.png'
 import contacts from '../images/contacts-icon.png'
-import details from '../images/details-icon.png'
+import setting from "../images/setting-icon.png";
 
 
 const isRouteActive = (route: string) => {
@@ -20,7 +20,7 @@ const isRouteActive = (route: string) => {
       { 
         label: "Overview", 
         route: "/", 
-        active: isRouteActive("/"),
+        active: homeRouteActive("/"),
         icon: <img src={overview} alt="icon"/>, 
     },
       {
@@ -30,17 +30,12 @@ const isRouteActive = (route: string) => {
         icon: <img src={contacts} alt="icon"/>, 
       },
       {
-        label: "Contacts",
-        route: "/contacts",
-        active: isRouteActive("/contacts"),
-        icon: <img src={contacts} alt="icon"/>, 
+        label: "Setting",
+        route: "/setting",
+        active: isRouteActive("/setting"),
+        icon: <img src={setting} alt="icon" />, 
       },
-      {
-        label: "Contacts",
-        route: "/contacts",
-        active: isRouteActive("/contacts"),
-        icon: <img src={contacts} alt="icon"/>, 
-      },
+      
     ];
     return menu;
   };

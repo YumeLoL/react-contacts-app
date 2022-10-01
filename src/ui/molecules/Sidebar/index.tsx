@@ -4,12 +4,12 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import useMenu from "../../../hooks/useMenu";
 import logo from "../../../images/logo.png";
-import profile from "../../../images/profile-icon.png";
+
 
 const Container = styled.div`
   ${tw`
-    bg-stone-200
     w-64
+    bg-stone-100
     rounded-l-3xl
     flex
     flex-col
@@ -18,12 +18,15 @@ const Container = styled.div`
     `}
 `;
 const Logo = styled.div`
-  ${tw` w-auto h-auto absolute top-10 `}
+  ${tw` w-auto h-auto absolute top-24 `}
 `;
 const SidebarContainer = styled.div`
   ${tw`
-    absolute top-32
+    absolute top-44
   `}
+  .active {
+    background-color: #b4cd93;
+  }
 `;
 const MenuWrapper = styled.div`
   ${tw`
@@ -34,9 +37,8 @@ const MenuWrapper = styled.div`
   m-4 
   rounded 
   cursor-pointer 
-  hover:bg-primary`
-  }
 
+  hover:bg-primary`}
 `;
 const Icon = styled.div`
   ${tw` w-auto h-auto self-center`}
@@ -69,9 +71,8 @@ const Sidebar = () => {
         {menu.map((menu, i) => (
           <MenuWrapper
             key={i}
-            className={`text-red`}
+            className={`${menu.active ? "active" : ""}`}
             onClick={() => {
-                console.log(menu.active)
               goTo(menu.route);
             }}
           >

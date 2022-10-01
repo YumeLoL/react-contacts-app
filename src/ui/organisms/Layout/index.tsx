@@ -14,7 +14,7 @@ const MainContainer = styled.div`
   flex
   justify-center
   items-center
-  bg-stone-50
+  bg-stone-200
   `}
 `;
 const DashboardContainer = styled.div`

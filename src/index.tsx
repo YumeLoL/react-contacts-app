@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
+import Blank from "./pages/Blank";
 import ContactDetails from "./pages/ContactDetails";
 import Contacts from "./pages/Contacts";
 import Overview from "./pages/Overview";
@@ -22,6 +23,8 @@ root.render(
             <Route index element={<Contacts />} />
             <Route path=":contactId" element={<ContactDetails />} />
           </Route>
+
+          <Route path="/setting" element={<Blank />} />
         </Routes>
         
       </Layout>
