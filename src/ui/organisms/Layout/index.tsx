@@ -30,7 +30,7 @@ const ContentWrapper = styled.div`
     w-full
     h-full
     flex
-
+    
     `}
 `
 const Layout: React.FC<ILayout> = ({ children }) => {
