@@ -4,6 +4,7 @@ import tw from "twin.macro";
 import Text from "../../ui/atoms/Text";
 import search from "../../images/search-icon.png";
 import axios from "axios";
+import { Marginer } from "../../ui/atoms/Marginer";
 
 const Container = styled.div`
   ${tw`
@@ -65,38 +66,30 @@ const ContactContainer = styled.div`
 
 interface IContactInfo {
   id: number;
-  name: number;
+  name: string;
   phone: number;
   email: string;
   address: {
     suite: string;
-    street:string;
+    street: string;
     city: string;
   };
 }
 
 const Contacts = () => {
   const [contacts, setContacts] = useState<IContactInfo[]>();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<any>("");
+  const [searchByName, setSearchByName] = useState("");
 
   useEffect(() => {
     const fatchData = async () => {
-      setLoading(true);
-
       try {
-        const res = await axios.get(
-          `https://jsonplaceholder.typicode.com/users`
-        );
-        setContacts(res.data);
-
-        console.log(contacts);
-        setLoading(false);
+        const res = await axios.get( `https://jsonplaceholder.typicode.com/users`);
+        if (res) {
+          setContacts(res.data);
+        }
       } catch (error) {
-        console.log(error);
-        setError(error);
+        console.log(error)
       }
-
     };
 
     fatchData();
@@ -118,11 +111,17 @@ const Contacts = () => {
               <Image>
                 <img width="100%" height="100%" src={search} alt="icon" />
               </Image>
-              <input className="outline-0" placeholder={`Search artists`} />
+              <input
+                className="outline-0"
+                placeholder={`Search artists`}
+                onChange={(e) => setSearchByName(e.target.value)}
+              />
             </Searchbar>
           </WhiteFlexRow>
         </Right>
       </TopContainer>
+
+      <Marginer margin={24} direction="vertical" />
 
       <ContactContainer>
         <table className="table-fixed">
@@ -137,15 +136,21 @@ const Contacts = () => {
           </thead>
           <tbody>
             {contacts && contacts.length > 0
-              ? contacts.map(({ id, name, phone, email, address }) => (
-                  <tr key={id}>
-                    <td>{id}</td>
-                    <td>{name}</td>
-                    <td>{phone}</td>
-                    <td>{email}</td>
-                    <td>{address.suite}, {address.street}, {address.city}</td>
-                  </tr>
-                ))
+              ? contacts
+                  .filter((user) =>
+                    user.name.toLowerCase().includes(searchByName)  // to filter by name
+                  ) 
+                  .map(({ id, name, phone, email, address }) => (
+                    <tr key={id}>
+                      <td>{id}</td>
+                      <td>{name}</td>
+                      <td>{phone}</td>
+                      <td>{email}</td>
+                      <td>
+                        {address.suite}, {address.street}, {address.city}
+                      </td>
+                    </tr>
+                  ))
               : "Loading..."}
           </tbody>
         </table>

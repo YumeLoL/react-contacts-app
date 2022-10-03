@@ -19,10 +19,11 @@ const MainContainer = styled.div`
 `;
 const DashboardContainer = styled.div`
   ${tw`
-  min-w-[80%]
-  h-5/6
+  w-[80%]
+  h-[80%]
   bg-white
   rounded-3xl
+  overflow-hidden
   `}
 `;
 const ContentWrapper = styled.div`
