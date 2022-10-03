@@ -19,8 +19,8 @@ const MainContainer = styled.div`
 `;
 const DashboardContainer = styled.div`
   ${tw`
-  w-[80%]
-  h-[80%]
+  w-[90%]
+  h-[90%]
   bg-white
   rounded-3xl
   overflow-hidden

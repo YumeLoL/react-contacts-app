@@ -21,7 +21,7 @@ root.render(
 
           <Route path="/contacts">
             <Route index element={<Contacts />} />
-            <Route path=":contactId" element={<ContactDetails />} />
+            <Route path=":id" element={<ContactDetails />} />
           </Route>
 
           <Route path="/setting" element={<Blank />} />

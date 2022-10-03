@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import tw from "twin.macro";
 import useMenu from "../../../hooks/useMenu";
 import logo from "../../../images/logo.png";
-
+import arrowLeft from "../../../images/arrow-left.png";
+import arrowRight from "../../../images/arrow-right.png";
 
 const Container = styled.div`
   ${tw`
-    w-64
     bg-stone-100
     rounded-l-3xl
     flex
@@ -17,12 +17,9 @@ const Container = styled.div`
     relative
     `}
 `;
-const Logo = styled.div`
-  ${tw` w-auto h-auto absolute top-24 `}
-`;
 const SidebarContainer = styled.div`
   ${tw`
-    absolute top-44
+    absolute top-44 left-0
   `}
   .active {
     background-color: #b4cd93;
@@ -37,37 +34,45 @@ const MenuWrapper = styled.div`
   m-4 
   rounded 
   cursor-pointer 
-
-  hover:bg-primary`}
+  hover:bg-primary
+  `}
 `;
 const Icon = styled.div`
-  ${tw` w-auto h-auto self-center`}
+  ${tw` w-[24px] h-[24px] self-center`}
 `;
 const NavMenu = styled.span`
   ${tw`
     w-24
     h-auto
-    text-lg
     flex
     items-center
     justify-center
     text-gray-700
-    
+    overflow-hidden
+  `}
+`;
+const ArrowButton = styled.div`
+  ${tw`
+  absolute
+  bottom-12
+  cursor-pointer
   `}
 `;
 
+
 const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false)
   const menu = useMenu();
   const navigate = useNavigate();
   const goTo = (route: string) => navigate(route);
 
   return (
-    <Container>
-      <Logo>
+    <Container className={isOpen ? 'w-64' : 'w-[87px]'}>
+      <div  className={`w-auto h-auto absolute top-24  `} style={{display: isOpen ? 'block' : 'none'}}>
         <img src={logo} alt="YumeApp" />
-      </Logo>
+      </div>
 
-      <SidebarContainer>
+      <SidebarContainer >
         {menu.map((menu, i) => (
           <MenuWrapper
             key={i}
@@ -77,10 +82,14 @@ const Sidebar = () => {
             }}
           >
             <Icon>{menu.icon}</Icon>
-            <NavMenu>{menu.label}</NavMenu>
+            <NavMenu style={{display: isOpen ? 'block' : 'none'}}>{menu.label}</NavMenu>
           </MenuWrapper>
         ))}
       </SidebarContainer>
+
+      <ArrowButton onClick={()=> setIsOpen(!isOpen)}>
+        <img src={isOpen? arrowLeft: arrowRight} alt="" />
+      </ArrowButton>
     </Container>
   );
 };

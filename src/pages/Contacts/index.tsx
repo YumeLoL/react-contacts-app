@@ -5,6 +5,19 @@ import Text from "../../ui/atoms/Text";
 import search from "../../images/search-icon.png";
 import axios from "axios";
 import { Marginer } from "../../ui/atoms/Marginer";
+import { Link } from "react-router-dom";
+
+interface IContactInfo {
+  id: number;
+  name: string;
+  phone: number;
+  email: string;
+  address: {
+    suite: string;
+    street: string;
+    city: string;
+  };
+}
 
 const Container = styled.div`
   ${tw`
@@ -64,17 +77,6 @@ const ContactContainer = styled.div`
     `}
 `;
 
-interface IContactInfo {
-  id: number;
-  name: string;
-  phone: number;
-  email: string;
-  address: {
-    suite: string;
-    street: string;
-    city: string;
-  };
-}
 
 const Contacts = () => {
   const [contacts, setContacts] = useState<IContactInfo[]>();
@@ -83,12 +85,14 @@ const Contacts = () => {
   useEffect(() => {
     const fatchData = async () => {
       try {
-        const res = await axios.get( `https://jsonplaceholder.typicode.com/users`);
+        const res = await axios.get(
+          `https://jsonplaceholder.typicode.com/users`
+        );
         if (res) {
           setContacts(res.data);
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
 
@@ -137,13 +141,15 @@ const Contacts = () => {
           <tbody>
             {contacts && contacts.length > 0
               ? contacts
-                  .filter((user) =>
-                    user.name.toLowerCase().includes(searchByName)  // to filter by name
-                  ) 
+                  .filter(
+                    (user) => user.name.toLowerCase().includes(searchByName) // to filter by name
+                  )
                   .map(({ id, name, phone, email, address }) => (
                     <tr key={id}>
                       <td>{id}</td>
-                      <td>{name}</td>
+                      <td>
+                        <Link className="text-emerald-600 font-bold " to={`/contacts/${id}`}>{name}</Link>
+                      </td>
                       <td>{phone}</td>
                       <td>{email}</td>
                       <td>
