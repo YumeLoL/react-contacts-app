@@ -3,7 +3,7 @@ import styled from "styled-components";
 import tw from "twin.macro";
 
 export interface TextType {
-  text: string;
+  text: string | number;
   className?: string;
   size: 'lg' | 'md' | 'sm';
 }

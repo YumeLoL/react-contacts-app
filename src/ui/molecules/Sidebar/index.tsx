@@ -19,7 +19,7 @@ const Container = styled.div`
 `;
 const SidebarContainer = styled.div`
   ${tw`
-    absolute top-44 left-0
+   w-full absolute top-44 left-0
   `}
   .active {
     background-color: #b4cd93;
@@ -61,7 +61,7 @@ const ArrowButton = styled.div`
 
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
   const menu = useMenu();
   const navigate = useNavigate();
   const goTo = (route: string) => navigate(route);

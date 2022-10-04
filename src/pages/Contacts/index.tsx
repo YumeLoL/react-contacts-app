@@ -7,15 +7,26 @@ import axios from "axios";
 import { Marginer } from "../../ui/atoms/Marginer";
 import { Link } from "react-router-dom";
 
-interface IContactInfo {
+export interface IContactInfo {
   id: number;
   name: string;
+  username: string;
   phone: number;
   email: string;
+  website: string;
+  company:{
+    name: string
+    catchPhrase: string
+    bs: string
+  }
   address: {
     suite: string;
     street: string;
     city: string;
+    geo:{
+      lat: string
+      lng: string
+    }
   };
 }
 
@@ -128,7 +139,7 @@ const Contacts = () => {
       <Marginer margin={24} direction="vertical" />
 
       <ContactContainer>
-        <table className="table-fixed">
+        <table className="table-auto">
           <thead>
             <tr>
               <th>No.</th>
