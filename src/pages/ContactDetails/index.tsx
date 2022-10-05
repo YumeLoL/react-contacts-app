@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import tw from "twin.macro";
+import axios from "axios";
 import Text from "../../ui/atoms/Text";
 import Map from "./Map";
 
@@ -14,9 +14,6 @@ interface IType {
 
 const Container = styled.div`
   ${tw`
-    w-full
-    p-6
-    rounded-r-3xl
     flex
     flex-col
     gap-5
@@ -86,7 +83,7 @@ const ContactDetails = () => {
 
         setGeo(data.address.geo)
         setData(value);
-        
+
       } catch (error) {
         console.log(error);
       }

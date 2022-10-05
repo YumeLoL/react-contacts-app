@@ -30,13 +30,7 @@ export interface IContactInfo {
   };
 }
 
-const Container = styled.div`
-  ${tw`
-    w-full
-    p-6
-    rounded-r-3xl
-    `}
-`;
+
 const TopContainer = styled.div`
   ${tw` 
     w-full
@@ -96,9 +90,7 @@ const Contacts = () => {
   useEffect(() => {
     const fatchData = async () => {
       try {
-        const res = await axios.get(
-          `https://jsonplaceholder.typicode.com/users`
-        );
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}`);
         if (res) {
           setContacts(res.data);
         }
@@ -111,7 +103,7 @@ const Contacts = () => {
   }, []);
 
   return (
-    <Container>
+    <>
       <TopContainer>
         <Left>
           <Text text={"All contacts"} size={"lg"} />
@@ -172,7 +164,7 @@ const Contacts = () => {
           </tbody>
         </table>
       </ContactContainer>
-    </Container>
+    </>
   );
 };
 

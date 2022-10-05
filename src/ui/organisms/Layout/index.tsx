@@ -27,20 +27,29 @@ const DashboardContainer = styled.div`
   `}
 `;
 const ContentWrapper = styled.div`
-    ${tw`
+  ${tw`
     w-full
     h-full
     flex
     
     `}
-`
+`;
+const ChildrenContainer = styled.div`
+  ${tw`
+    w-full
+    p-12
+    rounded-r-3xl
+    `}
+`;
 const Layout: React.FC<ILayout> = ({ children }) => {
   return (
     <MainContainer>
       <DashboardContainer>
         <ContentWrapper>
           <Sidebar />
-          {children}
+          <ChildrenContainer>
+            {children}
+          </ChildrenContainer>
         </ContentWrapper>
       </DashboardContainer>
     </MainContainer>
