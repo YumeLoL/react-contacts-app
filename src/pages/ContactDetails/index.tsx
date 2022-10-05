@@ -4,6 +4,13 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import tw from "twin.macro";
 import Text from "../../ui/atoms/Text";
+import Map from "./Map";
+
+interface IType {
+  key: string;
+  value: string;
+}
+
 
 const Container = styled.div`
   ${tw`
@@ -39,27 +46,25 @@ const CompanyRight = styled.div`
   gap-5
   `}
 `;
-const Map = styled.div`
+const MapContainer = styled.div`
   ${tw` 
   w-full
   h-full
   `}
 `;
-interface IType {
-  key: string;
-  value: string;
-}
+
 const ContactDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState<IType[]>();
-  const [location, setLocation] = useState();
+  const [geo, setGeo] = useState({lat: 0, lng: 0});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `https://jsonplaceholder.typicode.com/users?id=${id}`
+          `${process.env.REACT_APP_API_URL}?id=${id}`
         );
+
         const data = res.data[0];
 
         const value: IType[] = [
@@ -79,14 +84,16 @@ const ContactDetails = () => {
           { key: "Company", value: data.company.name },
         ];
 
+        setGeo(data.address.geo)
         setData(value);
+        
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <Container>
@@ -113,14 +120,18 @@ const ContactDetails = () => {
         <CompanyRight>
           {data && (
             <div className="flex gap-3">
-              <Text text={`${data[5].key} :`} size={"md"} className="text-secondary bold"/>
+              <Text
+                text={`${data[5].key} :`}
+                size={"md"}
+                className="text-secondary bold"
+              />
               <Text text={data[5].value} size={"md"} />
             </div>
           )}
 
-          <Map>
-
-          </Map>
+          <MapContainer>
+            <Map geo={geo}/>
+          </MapContainer>
         </CompanyRight>
       </ProfileContainer>
     </Container>

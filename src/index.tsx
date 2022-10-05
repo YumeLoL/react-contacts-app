@@ -25,6 +25,8 @@ root.render(
           </Route>
 
           <Route path="/setting" element={<Blank />} />
+          <Route path="/edit" element={<Blank />} />
+          <Route path="/manage" element={<Blank />} />
         </Routes>
         
       </Layout>

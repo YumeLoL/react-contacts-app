@@ -1,6 +1,8 @@
 import overview from '../images/overview-icon.png'
 import contacts from '../images/contacts-icon.png'
 import setting from "../images/setting-icon.png";
+import gallery from "../images/gallery.png";
+import receipt from "../images/receipt.png";
 
 
 const isRouteActive = (route: string) => {
@@ -28,6 +30,18 @@ const isRouteActive = (route: string) => {
         route: "/contacts",
         active: isRouteActive("/contacts"),
         icon: <img src={contacts} alt="icon"/>, 
+      },
+      {
+        label: "Edit",
+        route: "/edit",
+        active: isRouteActive("/edit"),
+        icon: <img src={gallery} alt="icon" />, 
+      },
+      {
+        label: "Manage",
+        route: "/manage",
+        active: isRouteActive("/manage"),
+        icon: <img src={receipt} alt="icon" />, 
       },
       {
         label: "Setting",
