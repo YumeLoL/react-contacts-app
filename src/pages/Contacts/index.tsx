@@ -90,7 +90,7 @@ const Contacts = () => {
   useEffect(() => {
     const fatchData = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/users`);
         if (res) {
           setContacts(res.data);
         }

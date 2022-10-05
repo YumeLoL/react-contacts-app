@@ -5,6 +5,7 @@ import axios from "axios";
 import Text from "../../ui/atoms/Text";
 import bg from "../../images/bg.png";
 import { IContactInfo } from "../Contacts";
+import Card from "../../ui/molecules/Card";
 
 const Container = styled.div`
   ${tw`
@@ -53,13 +54,19 @@ const Content = styled.div`
 
 const Overview = () => {
   const [contacts, setContacts] = useState<IContactInfo[]>();
+  const [posts, setPosts] = useState<any[]>()
+  const [todos, setTodos] = useState<any[]>()
 
   useEffect(() => {
     const fatchData = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/users`);
+        const resPost = await axios.get(`${process.env.REACT_APP_API_URL}/posts`)
+        const resTodo = await axios.get(`${process.env.REACT_APP_API_URL}/todos`)
         if (res) {
           setContacts(res.data);
+          setPosts(resPost.data)
+          setTodos(resTodo.data)
         }
       } catch (error) {
         console.log(error);
@@ -73,63 +80,11 @@ const Overview = () => {
     <div>
       <Container>
         <CardWrapper>
-          <div className="relative">
-            <Img>
-              <img src={bg} alt="" />
-            </Img>
-            <NumberColumn>
-              <Content>
-                <Text
-                  className="text-white"
-                  text={contacts && contacts.length > 0 ? contacts.length : 'null'}
-                  size={"lg"}
-                />
-                <Text
-                  className="text-white"
-                  text={"All Contacts"}
-                  size={"sm"}
-                />
-              </Content>
-            </NumberColumn>
-          </div>
-          <div className="relative">
-            <Img>
-              <img src={bg} alt="" />
-            </Img>
-            <NumberColumn>
-              <Content>
-                <Text
-                  className="text-white"
-                  text={"xxx"}
-                  size={"lg"}
-                />
-                <Text
-                  className="text-white"
-                  text={"Lorem, ipsum dolor"}
-                  size={"sm"}
-                />
-              </Content>
-            </NumberColumn>
-          </div>
-          <div className="relative">
-            <Img>
-              <img src={bg} alt="" />
-            </Img>
-            <NumberColumn>
-              <Content>
-                <Text
-                  className="text-white"
-                  text={"yyy"}
-                  size={"lg"}
-                />
-                <Text
-                  className="text-white"
-                  text={"Lorem, ipsum dolor "}
-                  size={"sm"}
-                />
-              </Content>
-            </NumberColumn>
-          </div>
+          <Card number={contacts?.length as number} text={"All Contacts"} />
+          <Card number={posts?.length as number} text={"All Posts"} />
+          <Card number={todos?.length as number} text={"All Todos"} />
+
+          
         </CardWrapper>
       </Container>
     </div>

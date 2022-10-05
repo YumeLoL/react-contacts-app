@@ -59,7 +59,7 @@ const ContactDetails = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}?id=${id}`
+          `${process.env.REACT_APP_API_URL}/users?id=${id}`
         );
 
         const data = res.data[0];
