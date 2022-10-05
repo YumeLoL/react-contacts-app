@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import tw from "twin.macro";
-import Text from "../../ui/atoms/Text";
+import useFetch from "../../hooks/useFetch";
 import search from "../../images/search-icon.png";
-import axios from "axios";
 import { Marginer } from "../../ui/atoms/Marginer";
-import { Link } from "react-router-dom";
+import Text from "../../ui/atoms/Text";
 
 export interface IContactInfo {
   id: number;
@@ -14,22 +14,32 @@ export interface IContactInfo {
   phone: number;
   email: string;
   website: string;
-  company:{
-    name: string
-    catchPhrase: string
-    bs: string
-  }
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
   address: {
     suite: string;
     street: string;
     city: string;
-    geo:{
-      lat: string
-      lng: string
-    }
+    geo: {
+      lat: string;
+      lng: string;
+    };
   };
 }
-
+interface IUser {
+  id: number;
+  name: string;
+  phone: number;
+  email: string;
+  address: {
+    suite: string;
+    street: string;
+    city: string;
+  };
+}
 
 const TopContainer = styled.div`
   ${tw` 
@@ -82,25 +92,10 @@ const ContactContainer = styled.div`
     `}
 `;
 
-
 const Contacts = () => {
-  const [contacts, setContacts] = useState<IContactInfo[]>();
   const [searchByName, setSearchByName] = useState("");
-
-  useEffect(() => {
-    const fatchData = async () => {
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/users`);
-        if (res) {
-          setContacts(res.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fatchData();
-  }, []);
+  const { data, loading, error } = useFetch(`users`);
+  if(error) console.log(error)
 
   return (
     <>
@@ -142,16 +137,23 @@ const Contacts = () => {
             </tr>
           </thead>
           <tbody>
-            {contacts && contacts.length > 0
-              ? contacts
-                  .filter(
-                    (user) => user.name.toLowerCase().includes(searchByName) // to filter by name
+            {loading
+              ? <h1>Loading ...</h1>
+              : data
+                  ?.filter(
+                    (user: IUser) =>
+                      user.name.toLowerCase().includes(searchByName) // to filter by name
                   )
-                  .map(({ id, name, phone, email, address }) => (
+                  .map(({ id, name, phone, email, address }: IUser) => (
                     <tr key={id}>
                       <td>{id}</td>
                       <td>
-                        <Link className="text-emerald-600 font-bold " to={`/contacts/${id}`}>{name}</Link>
+                        <Link
+                          className="text-emerald-600 font-bold "
+                          to={`/contacts/${id}`}
+                        >
+                          {name}
+                        </Link>
                       </td>
                       <td>{phone}</td>
                       <td>{email}</td>
@@ -159,8 +161,7 @@ const Contacts = () => {
                         {address.suite}, {address.street}, {address.city}
                       </td>
                     </tr>
-                  ))
-              : "Loading..."}
+                  ))}
           </tbody>
         </table>
       </ContactContainer>

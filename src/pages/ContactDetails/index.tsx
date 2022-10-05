@@ -11,7 +11,6 @@ interface IType {
   value: string;
 }
 
-
 const Container = styled.div`
   ${tw`
     flex
@@ -53,7 +52,7 @@ const MapContainer = styled.div`
 const ContactDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState<IType[]>();
-  const [geo, setGeo] = useState({lat: 0, lng: 0});
+  const [geo, setGeo] = useState({ lat: 0, lng: 0 });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,9 +80,8 @@ const ContactDetails = () => {
           { key: "Company", value: data.company.name },
         ];
 
-        setGeo(data.address.geo)
+        setGeo(data.address.geo);
         setData(value);
-
       } catch (error) {
         console.log(error);
       }
@@ -127,7 +125,7 @@ const ContactDetails = () => {
           )}
 
           <MapContainer>
-            <Map geo={geo}/>
+            <Map geo={geo} />
           </MapContainer>
         </CompanyRight>
       </ProfileContainer>
