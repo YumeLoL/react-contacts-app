@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-contacts-app/static/css/main.fc7d9101.css",
+    "main.js": "/react-contacts-app/static/js/main.3273c08f.js",
+    "index.html": "/react-contacts-app/index.html",
+    "main.fc7d9101.css.map": "/react-contacts-app/static/css/main.fc7d9101.css.map",
+    "main.3273c08f.js.map": "/react-contacts-app/static/js/main.3273c08f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc7d9101.css",
+    "static/js/main.3273c08f.js"
+  ]
+}
