@@ -18,14 +18,12 @@ const Large = styled.h1`
 const Medium = styled.h1`
   ${tw`
   md:text-base 
-  whitespace-nowrap
   `}
 `;
 const Small = styled.h1`
   ${tw`
   md:text-xs
   font-light
-  whitespace-nowrap
   `}
 `;
 

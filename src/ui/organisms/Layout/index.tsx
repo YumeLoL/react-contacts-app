@@ -14,32 +14,38 @@ const MainContainer = styled.div`
   flex
   justify-center
   items-center
-  bg-stone-200
+  bg-stone-600
   `}
 `;
 const DashboardContainer = styled.div`
   ${tw`
-  w-[90%]
-  h-[90%]
+  w-full
+  h-full
+  lg:w-[90%]
+  lg:h-[90%]
+  xl:w-[80%]
+  xl:h-[80%]
   bg-white
-  rounded-3xl
+  rounded-none
+  lg:rounded-3xl
   overflow-hidden
   `}
 `;
 const ContentWrapper = styled.div`
   ${tw`
-    w-full
-    h-full
-    flex
-    
-    `}
+  w-full
+  h-full
+  flex
+  `}
 `;
 const ChildrenContainer = styled.div`
   ${tw`
-    w-full
-    p-12
-    rounded-r-3xl
-    `}
+  w-full
+  p-12
+  rounded-r-3xl
+  overflow-y-scroll
+
+  `}
 `;
 const Layout: React.FC<ILayout> = ({ children }) => {
   return (

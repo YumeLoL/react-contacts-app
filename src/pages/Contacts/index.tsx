@@ -7,28 +7,28 @@ import search from "../../images/search-icon.png";
 import { Marginer } from "../../ui/atoms/Marginer";
 import Text from "../../ui/atoms/Text";
 
-export interface IContactInfo {
-  id: number;
-  name: string;
-  username: string;
-  phone: number;
-  email: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
-  address: {
-    suite: string;
-    street: string;
-    city: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-}
+// export interface IContactInfo {
+//   id: number;
+//   name: string;
+//   username: string;
+//   phone: number;
+//   email: string;
+//   website: string;
+//   company: {
+//     name: string;
+//     catchPhrase: string;
+//     bs: string;
+//   };
+//   address: {
+//     suite: string;
+//     street: string;
+//     city: string;
+//     geo: {
+//       lat: string;
+//       lng: string;
+//     };
+//   };
+// }
 interface IUser {
   id: number;
   name: string;

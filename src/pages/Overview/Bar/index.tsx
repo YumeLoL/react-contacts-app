@@ -26,8 +26,8 @@ const BarChart = ({ barData }: any) => {
   const number = barData.map((item: any) => {
     return item.number;
   });
-  console.log("labels:", labels);
-  console.log("number:", number);
+//   console.log("labels:", labels);
+//   console.log("number:", number);
 
   const data = {
     labels: labels,

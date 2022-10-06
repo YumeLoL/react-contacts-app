@@ -23,14 +23,18 @@ const Container = styled.div`
 const ProfileContainer = styled.div`
   ${tw` 
     w-full
-    h-full
+    h-auto
     flex
+    flex-wrap
+    lg:flex-nowrap
     gap-10
   `}
 `;
 const DetailsLeft = styled.div`
   ${tw` 
-  w-1/2
+  w-full
+  h-auto
+  lg:w-1/2
   flex
   flex-col
   gap-5
@@ -38,7 +42,8 @@ const DetailsLeft = styled.div`
 `;
 const CompanyRight = styled.div`
   ${tw` 
-  w-1/2
+  w-full
+  lg:w-1/2
   flex
   flex-col
   gap-5
@@ -47,7 +52,7 @@ const CompanyRight = styled.div`
 const MapContainer = styled.div`
   ${tw` 
   w-full
-  h-full
+  h-[450px]
   `}
 `;
 
@@ -116,18 +121,18 @@ const ContactDetails = () => {
 
         <CompanyRight>
           {data && (
-            <div className="flex gap-3">
+            <div className="flex flex-wrap break-normal gap-3">
               <Text
                 text={`${data[5].key} :`}
                 size={"md"}
                 className="text-secondary bold"
               />
-              <Text text={data[5].value} size={"md"} />
+              <Text text={data[5].value} size={"md"}  className="w-full h-auto" />
             </div>
           )}
 
           <MapContainer>
-            <Map geo={geo} />
+            <Map geo={geo} width="600" height="450" frameborder="0"  allowfullscreen />
           </MapContainer>
         </CompanyRight>
       </ProfileContainer>

@@ -38,7 +38,7 @@ const MenuWrapper = styled.div`
   `}
 `;
 const Icon = styled.div`
-  ${tw` w-[24px] h-[24px] self-center`}
+  ${tw`w-[24px] h-[24px] self-center`}
 `;
 const NavMenu = styled.span`
   ${tw`
@@ -59,20 +59,22 @@ const ArrowButton = styled.div`
   `}
 `;
 
-
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(true);
   const menu = useMenu();
   const navigate = useNavigate();
   const goTo = (route: string) => navigate(route);
 
   return (
-    <Container className={isOpen ? 'w-64' : 'w-[87px]'}>
-      <div  className={`w-auto h-auto absolute top-24  `} style={{display: isOpen ? 'block' : 'none'}}>
+    <Container className={isOpen ? "w-64" : "w-[87px]"}>
+      <div
+        className={`w-auto h-auto absolute top-24`}
+        style={{ display: isOpen ? "block" : "none" }}
+      >
         <img src={logo} alt="YumeApp" />
       </div>
 
-      <SidebarContainer >
+      <SidebarContainer>
         {menu.map((menu, i) => (
           <MenuWrapper
             key={i}
@@ -82,13 +84,15 @@ const Sidebar = () => {
             }}
           >
             <Icon>{menu.icon}</Icon>
-            <NavMenu style={{display: isOpen ? 'block' : 'none'}}>{menu.label}</NavMenu>
+            <NavMenu style={{ display: isOpen ? "block" : "none" }}>
+              {menu.label}
+            </NavMenu>
           </MenuWrapper>
         ))}
       </SidebarContainer>
 
-      <ArrowButton onClick={()=> setIsOpen(!isOpen)}>
-        <img src={isOpen? arrowLeft: arrowRight} alt="" />
+      <ArrowButton onClick={() => setIsOpen(!isOpen)}>
+        <img src={isOpen ? arrowLeft : arrowRight} alt="" />
       </ArrowButton>
     </Container>
   );
