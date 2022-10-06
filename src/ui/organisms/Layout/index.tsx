@@ -22,13 +22,11 @@ const DashboardContainer = styled.div`
   ${tw`
   w-full
   h-full
-  lg:w-[95%]
-  lg:h-[400px]
-  xl:w-[90%]
-  xl:h-[500px]
+  xl:w-[1000px]
+  xl:h-[700px]
   bg-white
   rounded-none
-  lg:rounded-3xl
+  xl:rounded-3xl
   overflow-hidden
   `}
 `;
@@ -45,7 +43,6 @@ const ChildrenContainer = styled.div`
   p-12
   rounded-r-3xl
   overflow-y-scroll
-
   `}
 `;
 const Layout: React.FC<ILayout> = ({ children }) => {
