@@ -19,7 +19,7 @@ const Container = styled.div`
 `;
 const SidebarContainer = styled.div`
   ${tw`
-   w-full absolute top-44 left-0
+   w-full absolute top-28 left-0
   `}
   .active {
     background-color: #b4cd93;
@@ -54,7 +54,7 @@ const NavMenu = styled.span`
 const ArrowButton = styled.div`
   ${tw`
   absolute
-  bottom-12
+  bottom-8
   cursor-pointer
   `}
 `;
@@ -68,7 +68,7 @@ const Sidebar = () => {
   return (
     <Container className={isOpen ? "w-64" : "w-[87px]"}>
       <div
-        className={`w-auto h-auto absolute top-24`}
+        className={`w-auto h-auto absolute top-14`}
         style={{ display: isOpen ? "block" : "none" }}
       >
         <img src={logo} alt="YumeApp" />

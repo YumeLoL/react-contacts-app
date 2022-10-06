@@ -15,16 +15,17 @@ const MainContainer = styled.div`
   justify-center
   items-center
   bg-stone-600
+
   `}
 `;
 const DashboardContainer = styled.div`
   ${tw`
   w-full
   h-full
-  lg:w-[90%]
-  lg:h-[90%]
-  xl:w-[80%]
-  xl:h-[80%]
+  lg:w-[95%]
+  lg:h-[95%]
+  xl:w-[90%]
+  xl:h-[90%]
   bg-white
   rounded-none
   lg:rounded-3xl
