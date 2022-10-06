@@ -23,9 +23,9 @@ const DashboardContainer = styled.div`
   w-full
   h-full
   lg:w-[95%]
-  lg:h-[95%]
+  lg:h-[400px]
   xl:w-[90%]
-  xl:h-[90%]
+  xl:h-[500px]
   bg-white
   rounded-none
   lg:rounded-3xl
