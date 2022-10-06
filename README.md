@@ -4,6 +4,7 @@ The application to view contacts list.
 <p align="center">
 <img src="public/app-1.png" width="500" height="320"/>
 <img src="public/app-2.png" width="200" height="320"/>
+
 ## Run the app
 - Download through github link or unzip the folder.
 - yarn install 
