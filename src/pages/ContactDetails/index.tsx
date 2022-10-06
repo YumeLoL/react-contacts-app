@@ -13,10 +13,12 @@ interface IType {
 
 const Container = styled.div`
   ${tw`
-    flex
-    flex-col
-    gap-5
-    `}
+  w-full
+  h-full
+  flex
+  flex-col
+  gap-5
+  `}
 `;
 const ProfileContainer = styled.div`
   ${tw` 
@@ -99,7 +101,7 @@ const ContactDetails = () => {
       <ProfileContainer>
         <DetailsLeft>
           {data && data.length > 0
-            ? data.map(({ key, value }) => (
+            ? data.slice(0,-1).map(({ key, value }) => (
                 <div key={key}>
                   <Text
                     text={key}
